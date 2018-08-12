@@ -1,0 +1,1 @@
+This folder holds a quick and dirty implementation for the 6 Relay output only board based on the ESP8266 controller. Software is based on the ESP8266 Captive Portal example provided with the arduino library.
