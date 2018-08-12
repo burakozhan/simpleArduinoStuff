@@ -4,6 +4,13 @@
 #include <DNSServer.h>
 // #include <ESP8266mDNS.h>
 #include <EEPROM.h>
+#include <Adafruit_NeoPixel.h>
+#include <WS2812FX.h>
+
+#define LED_COUNT 2
+#define LED_PIN 5
+
+WS2812FX ws2812fx = WS2812FX(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
 /*
  * This example serves a "hello world" on a WLAN and a SoftAP at the same time.
@@ -50,7 +57,6 @@ unsigned long lastConnectTry = 0;
 unsigned int status = WL_IDLE_STATUS;
 
 /** Relay connected Pins*/
-int r1 = 5;
 int r2 = 4;
 
 boolean r1state;
@@ -67,6 +73,13 @@ void setup() {
   delay(500); // Without delay I've seen the IP address blank
   Serial.print("AP IP address: ");
   Serial.println(WiFi.softAPIP());
+
+  /* WS2812 related init stuff */
+  ws2812fx.init();
+  ws2812fx.setBrightness(100);
+  ws2812fx.setSpeed(200);
+  ws2812fx.setMode(FX_MODE_RAINBOW_CYCLE);
+  ws2812fx.start();
 
   /* Setup the DNS server redirecting all the domains to the apIP */  
   dnsServer.setErrorReplyCode(DNSReplyCode::NoError);
@@ -86,10 +99,9 @@ void setup() {
   connect = strlen(ssid) > 0; // Request WLAN connect if there is a SSID
 
   /* SETUP Relay outputs */
-  pinMode(r1, OUTPUT);
   pinMode(r2, OUTPUT);
-  r1state = false;
   r2state = false;
+  digitalWrite(r2, HIGH);
 }
 
 void connectWifi() {
@@ -148,5 +160,7 @@ void loop() {
   dnsServer.processNextRequest();
   //HTTP
   server.handleClient();
+  //WS2812
+  ws2812fx.service();
 }
 

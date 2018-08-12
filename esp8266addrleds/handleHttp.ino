@@ -1,6 +1,5 @@
 /** Handle root or redirect to captive portal */
 void handleRoot() {
-  digitalWrite(r5,1);
   if (captivePortal()) { // If caprive portal redirect instead of displaying the page.
     return;
   }
@@ -24,27 +23,22 @@ void handleRoot() {
     "</body></html>"
   );
   server.client().stop(); // Stop is needed because we sent no content length
-  digitalWrite(r5,0);
 }
 
 /** Redirect to captive portal if we got a request for another domain. Return true in that case so the page handler do not try to handle the request again. */
 boolean captivePortal() {
-  digitalWrite(r4,1);
   if (!isIp(server.hostHeader()) && server.hostHeader() != (String(myHostname)+".local")) {
     Serial.print("Request redirected to captive portal");
     server.sendHeader("Location", String("http://") + toStringIp(server.client().localIP()), true);
     server.send ( 302, "text/plain", ""); // Empty content inhibits Content-length header so we have to close the socket ourselves.
     server.client().stop(); // Stop is needed because we sent no content length
-    digitalWrite(r4,0);
     return true;
   }
-  digitalWrite(r4,0);
   return false;
 }
 
 /** Wifi config page handler */
 void handleWifi() {
-  digitalWrite(r3,1);
   server.sendHeader("Cache-Control", "no-cache, no-store, must-revalidate");
   server.sendHeader("Pragma", "no-cache");
   server.sendHeader("Expires", "-1");
@@ -97,7 +91,6 @@ void handleWifi() {
     "</body></html>"
   );
   server.client().stop(); // Stop is needed because we sent no content length
-  digitalWrite(r3,0);
 }
 
 /** Handle the WLAN save form and redirect to WLAN config page again */
@@ -116,7 +109,6 @@ void handleWifiSave() {
 }
 
 void handleNotFound() {
-  digitalWrite(r2,1);
   if (captivePortal()) { // If caprive portal redirect instead of displaying the error page.
     return;
   }
@@ -136,7 +128,6 @@ void handleNotFound() {
   server.sendHeader("Pragma", "no-cache");
   server.sendHeader("Expires", "-1");
   server.send ( 404, "text/plain", message );
-  digitalWrite(r2, 0);
 }
 
 void handleLed(){
@@ -209,7 +200,6 @@ boolean getState(String value){
 }
 
 void setAllRelays(void){
-  digitalWrite(r1,r1state);
   digitalWrite(r2,r2state);
 }
 
