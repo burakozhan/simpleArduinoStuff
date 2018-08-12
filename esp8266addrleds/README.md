@@ -1,0 +1,1 @@
+This folder holds an implementation for a WS2812 Strip that is system powered, and Relay separable. It board is based on the ESP8266 controller. Software is based on the ESP8266 Captive Portal example provided with the arduino library.
