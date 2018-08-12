@@ -143,6 +143,8 @@ void loop() {
         Serial.print ( "IP address: " );
         Serial.println ( WiFi.localIP() );
 /*
+ * mDNS seems to cause random hangups. 
+ * Let's skip it for now.
         // Setup MDNS responder
         if (!MDNS.begin(myHostname)) {
           Serial.println("Error setting up MDNS responder!");
