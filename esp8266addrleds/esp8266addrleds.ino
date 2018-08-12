@@ -50,19 +50,11 @@ unsigned long lastConnectTry = 0;
 unsigned int status = WL_IDLE_STATUS;
 
 /** Relay connected Pins*/
-int r1 = 13;
-int r2 = 12;
-int r3 = 14;
-int r4 = 16;
-int r5 = 4;
-int r6 = 5;
+int r1 = 5;
+int r2 = 4;
 
 boolean r1state;
 boolean r2state;
-boolean r3state;
-boolean r4state;
-boolean r5state;
-boolean r6state;
 
 void setup() {
   delay(1000);
@@ -96,16 +88,8 @@ void setup() {
   /* SETUP Relay outputs */
   pinMode(r1, OUTPUT);
   pinMode(r2, OUTPUT);
-  pinMode(r3, OUTPUT);
-  pinMode(r4, OUTPUT);
-  pinMode(r5, OUTPUT);
-  pinMode(r6, OUTPUT); 
   r1state = false;
   r2state = false;
-  r3state = false;
-  r4state = false;
-  r5state = false;
-  r6state = false;
 }
 
 void connectWifi() {

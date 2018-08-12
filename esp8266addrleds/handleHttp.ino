@@ -162,45 +162,21 @@ void handleLed(){
 
   server.sendContent(
     "<table border=\"1\">"
-    "<tr><th>Relay 1</th><th>Relay 2</th><th>Relay 3</th><th>Relay 4</th><th>Relay 5</th><th>Relay 6</th></tr>"
+    "<tr><th>Relay 1</th><th>Relay 2</th></tr>"
     "\n<tr><td>"
     +getHumanReadable(r1state)+
     "</td><td>"
     +getHumanReadable(r2state)+
-    "</td><td>"
-    +getHumanReadable(r3state)+
-    "</td><td>"
-    +getHumanReadable(r4state)+
-    "</td><td>"
-    +getHumanReadable(r5state)+
-    "</td><td>"
-    +getHumanReadable(r6state)+
     "</td></tr>"
     "\n<tr><td>"
     "<a href='/led?r1=ON'>ON</a>"
     "</td><td>"
     "<a href='/led?r2=ON'>ON</a>"
-    "</td><td>"
-    "<a href='/led?r3=ON'>ON</a>"
-    "</td><td>"
-    "<a href='/led?r4=ON'>ON</a>"
-    "</td><td>"
-    "<a href='/led?r5=ON'>ON</a>"
-    "</td><td>"
-    "<a href='/led?r6=ON'>ON</a>"
     "</td></tr>"
     "\n<tr><td>"
     "<a href='/led?r1=OFF'>OFF</a>"
     "</td><td>"
     "<a href='/led?r2=OFF'>OFF</a>"
-    "</td><td>"
-    "<a href='/led?r3=OFF'>OFF</a>"
-    "</td><td>"
-    "<a href='/led?r4=OFF'>OFF</a>"
-    "</td><td>"
-    "<a href='/led?r5=OFF'>OFF</a>"
-    "</td><td>"
-    "<a href='/led?r6=OFF'>OFF</a>"
     "</td></tr>"
     "\n</table>"
   );
@@ -220,14 +196,6 @@ void setRelay(String name, boolean value){
     r1state = value;
   } else if(String(name) == String("r2")){
     r2state = value;
-  } else if(String(name) == String("r3")){
-    r3state = value;
-  } else if(String(name) == String("r4")){
-    r4state = value;
-  } else if(String(name) == String("r5")){
-    r5state = value;
-  } else if(String(name) == String("r6")){
-    r6state = value;
   }
 }
 
@@ -243,10 +211,6 @@ boolean getState(String value){
 void setAllRelays(void){
   digitalWrite(r1,r1state);
   digitalWrite(r2,r2state);
-  digitalWrite(r3,r3state);
-  digitalWrite(r4,r4state);
-  digitalWrite(r5,r5state);
-  digitalWrite(r6,r6state);
 }
 
 String getHumanReadable(boolean state){
