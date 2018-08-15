@@ -5,8 +5,8 @@ Switch 2 - GPIO 0 (pull-up) - UART Mode
 Switch 3 - GPIO 2 (pull-up) - Flash Mode
 Gnd - GPIO 15 - SD card boot
 
-Relay K1 - GPIO 12
-Relay K2 - GPIO 5 - Data out to ws2812b
+Relay K1 - GPIO 12 - Data out to ws2812b
+Relay K2 - GPIO 5
 Relay K3 - GPIO 4 - Power switch to LED strip
 
 Input 1 - GPIO 16

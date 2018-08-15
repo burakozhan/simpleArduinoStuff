@@ -7,8 +7,8 @@
 #include <Adafruit_NeoPixel.h>
 #include <WS2812FX.h>
 
-#define LED_COUNT 2
-#define LED_PIN 5
+#define LED_COUNT 137
+#define LED_PIN 12
 
 WS2812FX ws2812fx = WS2812FX(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
@@ -100,7 +100,7 @@ void setup() {
 
   /* SETUP Relay outputs */
   pinMode(r2, OUTPUT);
-  r2state = false;
+  r2state = true;
   digitalWrite(r2, HIGH);
 }
 
